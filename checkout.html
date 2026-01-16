@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopPractice</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GA4 Tracking Script -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+        
+        // Begin checkout event
+        gtag('event', 'begin_checkout', {
+            currency: 'USD',
+            value: 0,
+            items: []
+        });
+        
+        // Facebook InitiateCheckout event
+        fbq('track', 'InitiateCheckout');
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-store"></i>
+                <span>ShopPractice</span>
+                <span class="beta-tag">BETA</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="index.html#products"><i class="fas fa-box"></i> Products</a></li>
+                    <li><a href="cart.html" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i> Cart 
+                        <span class="cart-count">0</span>
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="checkout-container">
+            <!-- Checkout Progress -->
+            <div class="checkout-progress">
+                <div class="progress-step active">
+                    <div class="step-circle">1</div>
+                    <span class="step-label">Cart</span>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-circle">2</div>
+                    <span class="step-label">Information</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">3</div>
+                    <span class="step-label">Shipping</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">4</div>
+                    <span class="step-label">Payment</span>
+                </div>
+            </div>
+            
+            <div class="checkout-header">
+                <h1><i class="fas fa-shopping-bag"></i> Checkout</h1>
+                <p>Complete your practice order to test purchase tracking</p>
+            </div>
+            
+            <div class="checkout-content">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkout-items">
+                        <!-- Items loaded by JavaScript -->
+                    </div>
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span id="checkout-subtotal">$0.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping</span>
+                            <span id="checkout-shipping">$5.99</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax</span>
+                            <span id="checkout-tax">$0.00</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Total</span>
+                            <span id="checkout-total">$5.99</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Checkout Form -->
+                <div class="checkout-form-container">
+                    <h3>Customer Information</h3>
+                    <form id="checkout-form">
+                        <div class="form-section">
+                            <h4>Contact Information</h4>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" required placeholder="test@example.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>Shipping Address</h4>
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address *</label>
+                                <input type="text" id="address" required placeholder="123 Main Street">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City *</label>
+                                    <input type="text" id="city" required placeholder="New York">
+                                </div>
+                                <div class="form-group">
+                                    <label for="zip">ZIP Code *</label>
+                                    <input type="text" id="zip" required placeholder="10001">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>Payment Method</h4>
+                            <div class="payment-options">
+                                <div class="payment-option">
+                                    <input type="radio" id="credit-card" name="payment" value="credit" checked>
+                                    <label for="credit-card">
+                                        <i class="fas fa-credit-card"></i> Credit Card
+                                    </label>
+                                </div>
+                                <div class="payment-option">
+                                    <input type="radio" id="paypal" name="payment" value="paypal">
+                                    <label for="paypal">
+                                        <i class="fab fa-paypal"></i> PayPal
+                                    </label>
+                                </div>
+                                <div class="payment-option">
+                                    <input type="radio" id="google-pay" name="payment" value="google-pay">
+                                    <label for="google-pay">
+                                        <i class="fab fa-google-pay"></i> Google Pay
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-block" id="complete-order-btn">
+                                <i class="fas fa-lock"></i> Complete Practice Order
+                            </button>
+                            <p class="form-note">
+                                <i class="fas fa-info-circle"></i> 
+                                This is a practice transaction. No real payment will be processed.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopPractice</h3>
+                    <p>A practice e-commerce website for digital marketing professionals.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Practice Store - For testing tracking implementations</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./cart.js"></script>
+    <script src="./checkout.js"></script>
+</body>
+</html>

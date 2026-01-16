@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - ShopPractice</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GA4 Tracking Script -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+        
+        // Purchase event will be triggered by JavaScript after order details are loaded
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-store"></i>
+                <span>ShopPractice</span>
+                <span class="beta-tag">BETA</span>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="index.html#products"><i class="fas fa-box"></i> Products</a></li>
+                    <li><a href="cart.html" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i> Cart 
+                        <span class="cart-count">0</span>
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="confirmation-container">
+            <!-- Success Message -->
+            <div class="confirmation-header">
+                <div class="confirmation-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1>Order Confirmed!</h1>
+                <p>Thank you for completing this practice transaction</p>
+                <div class="order-number">
+                    Order #: <span id="order-id">PRACTICE-12345</span>
+                </div>
+            </div>
+            
+            <!-- Order Details -->
+            <div class="confirmation-details">
+                <div class="detail-card">
+                    <h3><i class="fas fa-user"></i> Customer Information</h3>
+                    <div class="detail-row">
+                        <span>Name:</span>
+                        <span id="customer-name">John Doe</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Email:</span>
+                        <span id="customer-email">test@example.com</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Order Date:</span>
+                        <span id="order-date">Today</span>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3><i class="fas fa-shipping-fast"></i> Shipping Information</h3>
+                    <div class="detail-row">
+                        <span>Address:</span>
+                        <span id="shipping-address">123 Main St, New York, NY 10001</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Shipping Method:</span>
+                        <span>Standard Shipping (5-7 business days)</span>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3><i class="fas fa-credit-card"></i> Payment Information</h3>
+                    <div class="detail-row">
+                        <span>Payment Method:</span>
+                        <span id="payment-method">Credit Card</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Amount Paid:</span>
+                        <span id="order-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order Items -->
+            <div class="confirmation-items">
+                <h3>Order Items</h3>
+                <div id="confirmation-items-list">
+                    <!-- Items loaded by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Tracking Events Summary -->
+            <div class="tracking-summary">
+                <h3><i class="fas fa-chart-line"></i> Tracking Events Triggered</h3>
+                <p>This purchase triggered the following tracking events:</p>
+                
+                <div class="tracking-events">
+                    <div class="event-card">
+                        <div class="event-icon ga4">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="event-details">
+                            <h4>GA4 Purchase Event</h4>
+                            <p>transaction_id: <code id="ga-transaction-id">PRACTICE-12345</code></p>
+                            <p>value: <code id="ga-purchase-value">$0.00</code></p>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card">
+                        <div class="event-icon meta">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <div class="event-details">
+                            <h4>Meta Purchase Event</h4>
+                            <p>value: <code id="meta-purchase-value">$0.00</code></p>
+                            <p>currency: <code>USD</code></p>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card">
+                        <div class="event-icon gads">
+                            <i class="fas fa-ad"></i>
+                        </div>
+                        <div class="event-details">
+                            <h4>Google Ads Conversion</h4>
+                            <p>Conversion action: <code>Purchase</code></p>
+                            <p>Conversion value: <code id="gads-value">$0.00</code></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Next Steps -->
+            <div class="confirmation-actions">
+                <h3>Next Steps for Practice</h3>
+                <div class="action-buttons">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i> Return to Home
+                    </a>
+                    <a href="index.html#products" class="btn btn-secondary">
+                        <i class="fas fa-shopping-cart"></i> Continue Shopping
+                    </a>
+                    <a href="cart.html" class="btn btn-outline">
+                        <i class="fas fa-redo"></i> Start New Test
+                    </a>
+                </div>
+                
+                <div class="practice-tip">
+                    <h4><i class="fas fa-lightbulb"></i> Practice Tip</h4>
+                    <p>Check your GA4 Real-Time reports, Meta Events Manager, and Google Ads conversions to verify these events were tracked correctly.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopPractice</h3>
+                    <p>A practice e-commerce website for digital marketing professionals.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Practice Store - For testing tracking implementations</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./main.js"></script>
+    <script src="./checkout.js"></script>
+</body>
+</html>
